@@ -4,15 +4,17 @@
     
     session_start();
  
-    // Check if the user is logged in, if not then redirect him to login page
-    // 
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: billing.php");
         exit;
     }
 
     $repository = new FormRepository();
+<<<<<<< HEAD
     $result = $repository->getCurrentSelection(); 
+=======
+    $result = $repository->getCurrentSelection();
+>>>>>>> 9b200b7fd56bf261de399bfb5e15c6ac8d7c7be3
     
     while ($row = $result->fetch_assoc()) {
         $brand = $row['brand'];

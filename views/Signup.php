@@ -167,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            <img class="mySlides" src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTsc8HpVAeFPsApQ6FssM0hvL8pflEvKyRBopo0i3E2MYwsxxzrd_JC3Shzb0nlXHYWPTfr2Ps&usqp=CAE" style="width:100%">
            <img class="mySlides" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQM4flBwmXS34AjLmUowPIPD4s-zL7_mS_7Si5M9v3cXBmR79FfLwonslwlqkAoqE4ptyw0XF67&usqp=CAE" style="width:100%">
            <img class="mySlides" src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTWo8OJp9AshxJ9WJMsgU7ISri9N1M64tOtQNlfdpcB1OFjiJlO_NSaUku-2wgjVUfzH7wxUohq&usqp=CAE" style="width:100%">
-           <img class="mySlides" src="https://cdn.shopify.com/s/files/1/2318/5263/products/BMT14017_CM_1_7bb96759-00e7-43db-acad-d45f37cc4442_1024x1024.jpg?v=1574388659" style="width:100%">
+           
          </div>
          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">

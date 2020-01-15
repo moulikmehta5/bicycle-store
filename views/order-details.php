@@ -12,7 +12,7 @@
     }
 
     $repository = new FormRepository();
-    $result = $repository->getCurrentOption();
+    $result = $repository->getCurrentSelection(); 
     
     while ($row = $result->fetch_assoc()) {
         $brand = $row['brand'];
@@ -23,7 +23,7 @@
 
     $orderResult = $repository->getOrderDetails($orderId);
     
-    while ($row = $orderResult->fetch_assoc()) {
+    while ($row = $orderResult->fetch_assoc()) { 
         $fName = $row['first_name'];
         $lName = $row['last_name'];
         $address = $row['address'];

@@ -30,6 +30,18 @@
 <html>
     <head>
         <?php require('../Views/headContents.php');?>
+        <script type="text/javascript">
+
+function addProduct(form) {
+if (confirm("Product added")) {
+form.submit();
+}
+
+else {
+alert("Product not added");
+}
+}
+</script>
     </head>
 <body>
 <div class="page-header">
@@ -55,7 +67,7 @@
  <p>Please select price:  (In Dollars)
  <input type="number" name="price" class="form-control" min="2300" size="35"><br><br>
 
- <p> <input type="submit" value="Submit"></p></p>
+ <p> <input type="submit" onClick="addProduct(this.form);" value="Submit"></p></p>
 </form>
 
 </body>

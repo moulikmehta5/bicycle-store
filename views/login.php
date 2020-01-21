@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["password"]);
     }
     
-    // Validate credentials
+    // Validate Credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement to identify existing users
         $sql = "SELECT id, username, password, role FROM users WHERE username = ?"; 
@@ -67,12 +67,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 //Send to Admin Page
                                 header("location: adminPage.php");
                             } else {
-                                // Redirect user to welcome page
+                                // REdirect user to welcome page.
                                 header("location: index1.php");
                             }
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid."; // unable to match password from the database when password_hash used.
+                            $password_err = "The password you entered was not valid."; // unable to match password from database when password hash used.
                         }
                     }
                 } else{
@@ -86,27 +86,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Close Statement 
         mysqli_stmt_close($stmt);      
     }
-      // Close connection 
+      // Close Connection
     mysqli_close($link);
 }
 
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 180)) {
-    // last request was more than 30 minutes ago
-    session_unset();     // unset $_SESSION variable for the run-time 
-    session_destroy();   // destroy session data in storage
-}
-$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
- 
-/*
-You can also use an additional time stamp to regenerate the session ID periodically to avoid attacks on sessions like session fixation:
-*/
-if (!isset($_SESSION['CREATED'])) {
-    $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 180) {
-    // session started more than 30 minutes ago
-    session_regenerate_id(true);    // change session ID for the current session an invalidate old session ID
-    $_SESSION['CREATED'] = time();  // update creation time
-}// update last activity time stamp
 ?>
  
 <!DOCTYPE html>
@@ -158,7 +141,7 @@ if (!isset($_SESSION['CREATED'])) {
            <img class="mySlides" src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTsc8HpVAeFPsApQ6FssM0hvL8pflEvKyRBopo0i3E2MYwsxxzrd_JC3Shzb0nlXHYWPTfr2Ps&usqp=CAE" style="width:100%">
            <img class="mySlides" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQM4flBwmXS34AjLmUowPIPD4s-zL7_mS_7Si5M9v3cXBmR79FfLwonslwlqkAoqE4ptyw0XF67&usqp=CAE" style="width:100%">
            <img class="mySlides" src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTWo8OJp9AshxJ9WJMsgU7ISri9N1M64tOtQNlfdpcB1OFjiJlO_NSaUku-2wgjVUfzH7wxUohq&usqp=CAE" style="width:100%">
-           <img class="mySlides" src="https://cdn.shopify.com/s/files/1/2318/5263/products/BMT14017_CM_1_7bb96759-00e7-43db-acad-d45f37cc4442_1024x1024.jpg?v=1574388659" style="width:100%">
+           
          </div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
@@ -172,7 +155,7 @@ if (!isset($_SESSION['CREATED'])) {
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login"><a href="forgotpassword.php"> &nbsp;&nbsp;&nbsp;&nbsp;<u>Forgot Password?</a></u>
+                <input type="submit" class="btn btn-primary" value="Login"><a href="forgotpassword.php">&nbsp;&nbsp;&nbsp;&nbsp;<u>Forgot Password?</a></u>
             </div>
             <p>Don't have an account?<a href="Signup.php"><u>Sign up now</a></u></p>
         </form>
@@ -190,13 +173,13 @@ function carousel() {
   myIndex++;
   if (myIndex > x.length) {myIndex = 1}    
   x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 2500); // Change image every 2.5 seconds
+  setTimeout(carousel, 2500);  
 }
 </script>
 </body>
 </html>
 
 <!--
-
+ 
 
 -->

@@ -146,7 +146,7 @@
             $conn = new Connection();
             $dbConnection = $conn->dbConnection();
             
-            $sql = "SELECT brand.name,gender.Type,color.color_type,price.price from brand,gender,color,price where brand.id=price.brand_id and gender.id=price.gender_id and color.id=price.color_id order by brand.name,gender.Type";
+            $sql = "SELECT brand.name,gender.Type,color.color_type,price.price from brand,gender,color,price where brand.id=price.brand_id and gender.id=price.gender_id and color.id=price.color_id order by brand.name,gender.Type,color.color_type";
             
             $result = $dbConnection->query($sql);
             
@@ -210,5 +210,91 @@
             $result = $dbConnection->query($sql);
 
         }
-    
+               
+     public function saveUser($username, $password, $role, $email, $contact_no) {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();
+            $sql = "INSERT INTO users (username, password, Role, email, contact_no)
+                    VALUES('$username', '$password', '$role', '$email', '$contact_no')";
+            
+            $result = $dbConnection->query($sql);
+        }
+     
+     public function searchOrders1() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where brand.name='$brand' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
+     public function searchOrders2() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where gender.Type='$gender' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
+     public function searchOrders3() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where color.color_type='$color' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
+     public function searchOrders4() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where billinginfo.first_name='$fName' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
+     public function searchOrders5() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where billinginfo.last_name='$lName' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
+     public function searchOrders6() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where billinginfo.city='$city' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
+     public function searchOrders7() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id where billinginfo.state='$state' order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+     }
+     
     }

@@ -1,3 +1,22 @@
+
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="topnav" align="left">
+  <a href="adminPage.php" class="btn btn-primary">Home</a>
+  <input type="text" placeholder="Search..">
+</div><br>
+<a href="logout.php" class="topleft"><div style="position: absolute;center: 0; width: 100px; text-align:left;">
+       <u>Logout</div></a></u></p>
+<hr>
+
 <?php
 require('../repository/formRepository.php');    
    
@@ -29,22 +48,15 @@ echo "</table>";
 
 // 
 ?>
-<html>
-    <head>
-    <meta charset="UTF-8">
-    <title>User</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
-    </style>
-</head>
-<body>
-<a href="logout.php" class="topleft"><div style="position: absolute;center: 0; width: 100px; text-align:left;">
-       <u>Logout</div></a></u></p>
 </body>
 </html>
 
 
 <!-- 
+This program will fetch all the products available for sale to admin.
+
+
+
+
 
 -->

@@ -129,6 +129,18 @@
 
             return $result;
         }
+
+        public function getSearchResults($searchTerm, $searchBy) {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id
+            where o.$searchBy like '%$searchTerm%'
+            order by bi.created_at DESC";
+
+            $result = $dbConnection->query($sql);
+            return $result;
+        }
         
         public function getUsers() {
             $conn = new Connection();
@@ -212,6 +224,7 @@
         }
                
      public function saveUser($username, $password, $role, $email, $contact_no) {
+            
             $conn = new Connection();
             $dbConnection = $conn->dbConnection();
             $sql = "INSERT INTO users (username, password, Role, email, contact_no)

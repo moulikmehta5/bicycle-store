@@ -123,12 +123,50 @@
             $conn = new Connection();
             $dbConnection = $conn->dbConnection();            
 
-            $sql = "SELECT * From orderdetails as o join billinginfo as bi on o.billing_id = bi.id order by bi.created_at DESC";
+            $sql = "SELECT o.id, o.brand, o.gender, o.color, o.price, bi.first_name, bi.last_name, bi.address, bi.city, bi.state, bi.pin_code, bi.created_at 
+            From orderdetails as o join billinginfo as bi on o.billing_id = bi.id Group by o.id order by bi.created_at  ASC Limit 10";
 
             $result = $dbConnection->query($sql);
 
             return $result;
         }
+
+        public function getAllOrdersBeforeID($lastId) {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT o.id, o.brand, o.gender, o.color, o.price, bi.first_name, bi.last_name, bi.address, bi.city, bi.state, bi.pin_code, bi.created_at 
+            From orderdetails as o join billinginfo as bi on o.billing_id = bi.id 
+            Where o.id < '$lastId' Group by o.id order by bi.created_at  ASC Limit 10";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+        }
+
+        public function getAllOrdersAfterID($lastId) {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT o.id, o.brand, o.gender, o.color, o.price, bi.first_name, bi.last_name, bi.address, bi.city, bi.state, bi.pin_code, bi.created_at 
+            From orderdetails as o join billinginfo as bi on o.billing_id = bi.id 
+            Where o.id > '$lastId' Group by o.id order by bi.created_at  ASC Limit 10";
+
+            $result = $dbConnection->query($sql);
+
+            return $result;
+        }
+
+        public function getCountOfRecords() {
+            $conn = new Connection();
+            $dbConnection = $conn->dbConnection();            
+
+            $sql = "SELECT * From orderdetails";
+
+            $count = $dbConnection->query($sql);
+
+            return $count;
+        }        
 
         public function getSearchResults($searchTerm, $searchBy) {
             $conn = new Connection();

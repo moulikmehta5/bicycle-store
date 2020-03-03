@@ -10,11 +10,7 @@
     }
 
     $repository = new FormRepository();
-<<<<<<< HEAD
     $result = $repository->getCurrentSelection(); 
-=======
-    $result = $repository->getCurrentSelection();
->>>>>>> 9b200b7fd56bf261de399bfb5e15c6ac8d7c7be3
     
     while ($row = $result->fetch_assoc()) {
         $brand = $row['brand'];

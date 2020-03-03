@@ -7,17 +7,31 @@
 		header("location: login.php");
 		exit;
 	}
-
+	$justRunOnce = true;
+	$pageNumberToSend = null;
+	$previousNumber = null;
+	$nextNumber = null;
 	$repository = new FormRepository();   
 	$result = $repository->getAllOrders();
+	$getCountOfRecords = $repository->getCountOfRecords();
+	$pages = (mysqli_num_rows($getCountOfRecords)/10);
 
 	if (isset($_POST['searchSubmit'])) {
 		$searchTerm = $_POST['searchTerm'];
 		$searchBy = $_POST['searchBy'];	
-
 		$repository = new FormRepository();
 		$result = $repository->getSearchResults($searchTerm, $searchBy);
 	}
+
+	if (isset($_GET['previous'])) {
+		$lastId = $_GET['lastId'];
+		$result = $repository->getAllOrdersBeforeID($lastId);
+	} 
+
+	if (isset($_GET['next'])) {
+		$lastId = $_GET['lastId'];
+		$result = $repository->getAllOrdersAfterID($lastId);
+	} 
 ?>
 
 <html>
@@ -95,12 +109,16 @@
 				<th>City</th>
 				<th>State</th>
 				<th>ZipCode</th>
+				<th> Created </th>
 			</tr>";
 
 			while($row = mysqli_fetch_array($result))
 			{
+				
+				$pageNumberToSend = $row['id'];
+				
 				echo "<tr>";
-				echo "<td>" . $row['billing_id'] . "</td>";
+				echo "<td>" . $row['id'] . "</td>";
 				echo "<td>" . $row['brand'] . "</td>";
 				echo "<td>" . $row['gender'] . "</td>";
 				echo "<td>" . $row['color']. "</td>";
@@ -111,10 +129,24 @@
 				echo "<td>" . $row['city']. "</td>";
 				echo "<td>" . $row['state']. "</td>";
 				echo "<td>" . $row['pin_code']. "</td>";
+				echo "<td>" . $row['created_at']. "</td>";
 				echo "</tr>";
 			}
 			echo "</table>";
 
 		?>
+		<div class="pagination">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<?php
+						if ($pageNumberToSend != 1)	{
+							echo '<li class="page-item"><a class="page-link" href="?previous=1&lastId='.$pageNumberToSend.'"> Previous </a></li>';	
+						}					
+						echo '<li class="page-item"><a class="page-link" href="?next=1&lastId='.$pageNumberToSend.'"> Next </a></li>';			
+					?>
+					
+				</ul>
+			</nav>
+		</div>
 	</body>
 </html>
